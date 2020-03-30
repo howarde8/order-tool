@@ -16,15 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from rest_framework import routers
+from backend import views
+from django.conf.urls import url, include
+
+auth_router = routers.DefaultRouter()
+auth_router.register('api/auth/user_manager', views.UserManager, base_name="user_manager")
+auth_router.register('api/auth/user_rigister', views.UserRigister, base_name="user_rigister")
+
+models_url = [
+    path('', include(auth_router.urls)),
+]
+
 
 admin_url = [
     path('admin/', admin.site.urls),
 ]
 
 jwt_token_url = [
-    path('api/token/obtain/', obtain_jwt_token, name='token_obtain_pair'),
-    path('api/token/refresh/', refresh_jwt_token),
-    path('api/token/verify/', verify_jwt_token),
+    path('api/token/obtain/', obtain_jwt_token, name='token_obtain'),
+    path('api/token/refresh/', refresh_jwt_token, name='token_refresh'),
+    path('api/token/verify/', verify_jwt_token, name='token_verify'),
 ]
 
-urlpatterns = admin_url + jwt_token_url
+urlpatterns = admin_url + jwt_token_url + models_url
