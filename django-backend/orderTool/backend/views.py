@@ -80,7 +80,7 @@ class UserManager(viewsets.ModelViewSet):
             else:
                 user.set_password(request.POST["new_password"])
                 user.save()
-            return Response({"detail":"OK"}, status=status.HTTP_201_CREATED)
+            return Response({"detail":"OK"}, status=status.HTTP_202_ACCEPTED)
 
         elif request.method == "PATCH":
             user = self.get_object()
