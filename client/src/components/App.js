@@ -1,16 +1,20 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './Login';
+import Buyer from './Buyer';
 
 function App() {
   return (
-    <div>
-      <Layout style={{ height: '100vh' }}>
-        <Layout.Content style={{ padding: '5%' }}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
           <Login />
-        </Layout.Content>
-      </Layout>
-    </div>
+        </Route>
+        <Route path="/buyer">
+          <Buyer />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
