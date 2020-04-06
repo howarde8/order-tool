@@ -19,7 +19,8 @@ services:
          USER: ${USER}
          UID: ${UID}
          GID: ${UID}
-    command: python /home/${USER}/orderTool/manage.py runserver 0.0.0.0:8000
+    command: ['bash', './main.sh']
+    restart: always
     volumes:
       - ./django-backend/:/home/${USER}
     ports:
