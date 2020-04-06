@@ -1,11 +1,7 @@
 FROM python:3
-ARG USER 
-ARG GID 
-ARG UID
-RUN groupadd -g ${GID} ${USER} && useradd -lm -u ${UID} -g ${GID} ${USER}
 ENV PYTHONUNBUFFERED 1
-WORKDIR /home/${USER}
-COPY requirements.txt /home/${USER}
+WORKDIR /code
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-USER ${USER}
+COPY . /code/
 

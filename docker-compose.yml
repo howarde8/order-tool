@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7.29
     volumes:
-      - ./db/:/var/lib/mysql
+      - mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
       MYSQL_DATABASE: order_tool
@@ -15,14 +15,12 @@ services:
     build:
        context: ./django-backend/
        dockerfile: dockerfile
-       args:
-         USER: ${USER}
-         UID: ${UID}
-         GID: ${UID}
-    command: python /home/${USER}/orderTool/manage.py runserver 0.0.0.0:8000
+    command: python /code/orderTool/manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./django-backend/:/home/${USER}
+      - ./django-backend/:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
+volumes:
+  mysql:
