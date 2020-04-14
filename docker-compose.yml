@@ -15,7 +15,8 @@ services:
     build:
        context: ./django-backend/
        dockerfile: dockerfile
-    command: python /code/orderTool/manage.py runserver 0.0.0.0:8000
+    command: ['bash', './main.sh']
+    restart: always
     volumes:
       - ./django-backend/:/code
     ports:

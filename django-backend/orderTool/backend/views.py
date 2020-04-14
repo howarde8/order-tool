@@ -13,6 +13,7 @@ class UserRigister(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer
     filterset_fields = "__all__"
     permission_classes = []
+
     def list(self, request, *args, **kwargs):
         return Response({"detail":"Method \"{}\" not allowed.".format(str(request.method))}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -40,6 +41,7 @@ class UserRigister(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         return Response({"detail":"Method \"{}\" not allowed.".format(str(request.method))}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 class UserManager(viewsets.ModelViewSet):
 
     # queryset = User.objects.all()
