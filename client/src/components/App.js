@@ -1,18 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './Login';
-import Buyer from './Buyer';
+
+import Main from './Main';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route path="/buyer">
-          <Buyer />
-        </Route>
+        <Route path="/" component={Main} />
       </Switch>
     </BrowserRouter>
   );
