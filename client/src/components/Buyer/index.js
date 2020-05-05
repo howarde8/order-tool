@@ -3,13 +3,15 @@ import { Layout, Menu, Typography } from 'antd';
 import {
   SettingOutlined,
   MenuUnfoldOutlined,
-  MenuFoldOutlined
+  MenuFoldOutlined,
+  UserOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 
 const DEFAULT_COLLAPSED_WIDTH = 80;
 const TRIGGERED_COLLAPSED_WIDTH = 0;
 
-function Buyer() {
+function Buyer(props) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -17,7 +19,7 @@ function Buyer() {
       <Layout.Sider
         trigger={null}
         breakpoint="lg"
-        onBreakpoint={broken => setCollapsed(broken)}
+        onBreakpoint={(broken) => setCollapsed(broken)}
         collapsible
         collapsed={collapsed}
         collapsedWidth={
@@ -27,7 +29,7 @@ function Buyer() {
         <div
           style={{
             height: '32px',
-            margin: '16px'
+            margin: '16px',
           }}
         >
           <Typography.Title
@@ -49,9 +51,19 @@ function Buyer() {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
-              onClick: () => setCollapsed(!collapsed)
+              onClick: () => setCollapsed(!collapsed),
             }
           )}
+          <span style={{ float: 'right' }}>
+            <span>
+              <UserOutlined style={{ marginRight: 5 }} />
+              {props.user ? props.user.username : null}
+            </span>
+            <span onClick={props.logout} style={{ cursor: 'pointer' }}>
+              <LogoutOutlined style={{ marginLeft: 10, marginRight: 5 }} />
+              Logout
+            </span>
+          </span>
         </Layout.Header>
       </Layout>
     </Layout>
