@@ -1,14 +1,6 @@
 version: '3'
 
-services:
-  jenkins:
-    build: ./jenkins
-    restart: always         
-    ports:
-      - "8081:8080"
-      - "50000:50000"
-    volumes:            
-      - jenkins:/var/jenkins_home 
+services: 
   db:
     image: mysql:5.7.29
     volumes:
@@ -17,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: "123456"
       MYSQL_DATABASE: order_tool
     ports:
-      - "9527:3306"
+      - "9530:3306"
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   web:
     build:
@@ -28,7 +20,7 @@ services:
     volumes:
       - ./django-backend/:/code
     ports:
-      - "8080:8000"
+      - "8088:8000"
     depends_on:
       - db
   client:
@@ -45,4 +37,3 @@ services:
 volumes:
   mysql:
   node_modules:
-  jenkins:
