@@ -20,7 +20,7 @@ services:
     volumes:
       - ./django-backend/:/code
     ports:
-      - "8088:8000"
+      - "8000:8000"
     depends_on:
       - db
   client:
